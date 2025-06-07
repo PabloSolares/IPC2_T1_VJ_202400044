@@ -46,21 +46,6 @@ class Lista:
         while aux != None:
             print(aux.dato.descripcion())
             aux = aux.siguente
-    def eliminarUltimo(self):
-        aux = self.primero
-        while aux.siguente != self.ultimo:
-            aux = aux.siguente
-        aux.siguente = None
-        self.ultimo = aux
-    def agregarInicio(self,dato):
-        if self.vacia():
-            self.primero = self.ultimo = Node(dato)
-        else: 
-            aux = Node(dato)
-            aux.siguente = self.primero
-            self.primero = aux
-    def eliminarInicio(self):
-        self.primero = self.primero.siguente
     def codigoExistente(self, codigo):
         aux = self.primero
         while aux != None:
@@ -96,8 +81,6 @@ class Lista:
                 return True
             aux = aux.siguente
         return False 
-
-
 
 lista = Lista()
 aerolineas = Lista()
@@ -168,10 +151,9 @@ def menu():
             if lista.vacia(): 
                 print('No has agregado los vuelos. Agrega los vuelos en 1. ') 
             else :  
-               vuelosLista.sort(key=lambda vuelo:int(vuelo.duracion))
+               vuelosLista.sort(key=lambda vuelo:int(vuelo.duracion), reverse=True)
                for vuelo in vuelosLista:
                    print(f'{vuelo.getCodigo()} - {vuelo.getDuracion()}')
-               
         elif opcion == '5':
             print('Saliendo del programa...')
             break
